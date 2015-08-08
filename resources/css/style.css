@@ -1,0 +1,31 @@
+.peer-row  td{
+	
+	padding: 5px 5px 5px 100px;
+	font-size: 20px;
+	line-height: 25px;
+	height: 40px;
+	background: none;
+}
+
+.peer-row .x-grid-cell-inner {
+	border-radius: 10px;
+	white-space: normal;
+	background: rgb(237, 237, 237);
+}
+
+.my-row  td{
+	
+	padding: 5px 5px 5px 5px;
+	font-size: 20px;
+	line-height: 25px;
+	height: 40px;
+	background: none;
+}
+
+.my-row .x-grid-cell-inner {
+	border-radius: 10px;
+	white-space: normal;
+	background: rgb(170, 212, 146);
+}
+
+
