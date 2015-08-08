@@ -47,10 +47,6 @@ Ext.define('App.view.list.Main', {
 		}
 	],
 	
-	listeners: {
-		render: 'onListRender'
-	},
-	
 	initComponent: function(){
 		
 		this.callParent();
