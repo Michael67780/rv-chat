@@ -31,7 +31,6 @@ Ext.define('App.view.sender.Main', {
 	
 						{
 							xtype: 'textareafield',
-							autoRender: true,
 							emptyText: 'Enter message...',
 							grow      : true,
 							growMax: 300,

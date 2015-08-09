@@ -35,7 +35,7 @@ Ext.define('App.view.list.Main', {
 			dataIndex: 'text',
 			flex: true,
 			text: 'RV CHAT',
-			//связываем с моделвью на случай если захотим динамически менять заголовок
+			//связываем с modelview на случай если захотим динамически менять заголовок
 			bind: {
 				text: '{gridTitle}'
 			},

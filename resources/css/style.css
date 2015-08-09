@@ -9,6 +9,7 @@
 
 .peer-row .x-grid-cell-inner {
 	border-radius: 10px;
+	border: solid 2px rgb(237, 237, 237);
 	white-space: normal;
 	background: rgb(237, 237, 237);
 }
@@ -24,6 +25,7 @@
 
 .my-row .x-grid-cell-inner {
 	border-radius: 10px;
+	border: solid 2px rgb(170, 212, 146);
 	white-space: normal;
 	background: rgb(170, 212, 146);
 }
