@@ -6,7 +6,6 @@ Ext.define('App.view.chat.MainController', {
         'Ext.window.MessageBox'
     ],
 
-    alias: 'controller.chat.main',
-
+    alias: 'controller.chat.main'
 
 });

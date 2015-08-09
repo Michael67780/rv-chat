@@ -1,4 +1,6 @@
-
+/*
+*	Центрируем контейнер основного виджета в броузере
+*/
 Ext.define('App.view.main.Main', {
     extend: 'Ext.container.Container',
     requires: [

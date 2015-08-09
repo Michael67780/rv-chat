@@ -1,23 +1,23 @@
-/**
- * This view is an example list of people.
- */
+/*
+* Chat Messages Grid with customized rows
+* Для отображения используем грид с одной колонкой. Заголовок колонки используем как header для всего виджета
+*/
  
 Ext.define('App.view.list.Main', {
     extend: 'Ext.grid.Panel',
     xtype: 'chatlist',
 	
-	autoScroll: true,
+	bufferedRenderer: false, //иначе проблемы с скороллом
 	
+	//кастомизиреум строки грида
 	viewConfig: {
+		
 		stripeRows: false,
 		
 		getRowClass : function(record, index){
-        
-			return (record.data.uid == App.userID ? 'my-row' : 'peer-row');
+ 			return (record.data.uid == App.userID ? 'my-row' : 'peer-row');
 		}
 	},
-
-	layout: 'fit',
 	
 	require: [
 		'App.view.list.MainController',
@@ -25,34 +25,81 @@ Ext.define('App.view.list.Main', {
 	],
 	
 	controller: 'list.main',
-	
-	store: App.mainStore,
-	
-	bind: {
-		store: '{store}'
-	},
-	
+
     viewModel: {
         type: 'list.main'
     },
 
     columns: [
-		{
+		 Ext.create('Ext.grid.column.Column', {
 			dataIndex: 'text',
 			flex: true,
-			header: '@RV CHAT',
+			text: 'RV CHAT',
+			//связываем с моделвью на случай если захотим динамически менять заголовок
+			bind: {
+				text: '{gridTitle}'
+			},
 			menuDisabled: true,
 			resizable: false,
 			sortable: false
-		}
+		})
 	],
 	
-	initComponent: function(){
+	//соединение с socket.io и установка обработчиков
+	connect: function() {
+	
+		var socket = App.socket = io();
 		
+		App.socket.on('connect', function(s){
+			
+			if (!$.cookie('user_id'))
+			{
+				$.cookie('user_id', 'UID' + String(Math.random()).slice(2));
+			}
+			App.userID = $.cookie('user_id'); //ID forever
+			
+			//подгружаем данные только после коннекта и установки userID
+			App.mainStore.load();
+		});
+		
+		App.socket.on('disconnect', function(s){
+			App.userID = null;
+		});
+		
+		App.socket.on('chat.message', function(msg){
+			
+			var rec = null;
+			
+			if (msg.uid !== App.userID) //сообщения добавил другой пользователь
+			{
+				App.mainStore.load();
+			}
+			else //мое сообщение сохранено на сервере - можно добавить его в список, а подгружать не нужно
+			{
+				rec = Ext.create('App.model.Message', msg);
+				App.mainStore.add(rec);
+				rec.commit();
+				App.grid.scrollToBottom();
+			}
+			
+		});
+		
+	},	
+	
+	initComponent: function(){
+	
+		App.grid = this;
+		App.mainStore = Ext.create('App.store.Messages');
+		this.store = App.mainStore;
+		
+		this.connect();
+	
 		this.callParent();
 		
-		App.grid = this;
-		
+	},
+	
+	scrollToBottom: function(){
+		this.getView().scrollBy(0, 999999);
 	}
             
 });

@@ -5,27 +5,21 @@ Ext.define('App.store.Messages', {
 		'App.model.Message'
 	],
 	
-	autoLoad: true,
-	
     alias: 'store.messages',
 	
 	model: 'App.model.Message',
 
     proxy: {
         type: 'ajax',
-		url: '/message-list',
+		url: '/messages',
         reader: {
             type: 'json'
         }
     },
 	
-	scrollGrid: function(){
-			App.grid.getView().scrollBy(0, 999999);
-	},
-	
 	listeners: {
 		load: function(s){
-			s.scrollGrid();
+			App.grid.scrollToBottom();
 		}
 	}
 });

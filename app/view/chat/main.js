@@ -1,4 +1,6 @@
-
+/*
+* Промежуточный контейнер для грида сообщений и поля отправки сообщения 	
+*/
 Ext.define('App.view.chat.Main', {
     extend: 'Ext.container.Container',
     requires: [
@@ -18,12 +20,6 @@ Ext.define('App.view.chat.Main', {
     layout: {
         type: 'border'
     },
-	
-	initComponent: function(){
-		
-		this.callParent();
-		App.mainStore = Ext.create('App.store.Messages');
-	},
 
     items: [{
 				region: 'south',

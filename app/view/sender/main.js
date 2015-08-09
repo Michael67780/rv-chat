@@ -1,4 +1,6 @@
-
+/*
+*	Для ввода сообщений используем textarea с параметром grow для автоматического увеличении поля
+*/
 Ext.define('App.view.sender.Main', {
     extend: 'Ext.form.Panel',
     xtype: 'sendform',
@@ -29,16 +31,15 @@ Ext.define('App.view.sender.Main', {
 	
 						{
 							xtype: 'textareafield',
+							autoRender: true,
 							emptyText: 'Enter message...',
-							// height: '20px',
 							grow      : true,
-							growMax: 200,
-							growMin: 60,
+							growMax: 300,
+							growMin: 54,
 							enableKeyEvents: true,
 							resizable: true,
 							listeners: {
 								keyup: 'onKeyUp'
-								// render: 'onInputRender'
 							}
 						}
 						
