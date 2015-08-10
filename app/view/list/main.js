@@ -7,7 +7,7 @@ Ext.define('App.view.list.Main', {
     extend: 'Ext.grid.Panel',
     xtype: 'chatlist',
 	
-	bufferedRenderer: false, //иначе проблемы с скороллом
+	bufferedRenderer: false, //иначе проблемы со скороллом
 	
 	//кастомизиреум строки грида
 	viewConfig: {

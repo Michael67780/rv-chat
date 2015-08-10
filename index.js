@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var striptags = require('striptags');
 
 var messages = [];
 
@@ -25,6 +26,7 @@ app.get(/.*/, function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat.message', function(msg){
+	msg.text = striptags(msg.text);
 	messages.push(msg);
     io.emit('chat.message', msg);
   });
