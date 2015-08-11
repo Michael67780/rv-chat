@@ -45,5 +45,8 @@ Ext.manifest=JSON.parse(j.content);h.load(f)})}else h.load(f)},load:function(f){
 return h}();Ext.manifest=Ext.manifest||"bootstrap";Ext.Microloader.run();</script>
 
 </head>
-<body></body>
+<body style="position: relative">
+	<!--div style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">Loading...</div-->
+	<div id="preloader" style="position: relative; text-align: center; margin-left: auto; margin-right: auto; margin-top: 300px; font-family: Verdana;"><img src="/resources/images/ajax-loader.gif"/><span style="position: absolute; bottom: 10px;">&nbsp; &nbsp;Loading...</span></div>
+</body>
 </html>

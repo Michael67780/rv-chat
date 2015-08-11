@@ -9,6 +9,6 @@ Ext.define('App.Application', {
     ],
     
     launch: function () {
-        // TODO - Launch the application
+        $('#preloader').remove();
     }
 });
